@@ -186,23 +186,24 @@ elif select_page == "Choose Neurotechnology":
     
     st.header(f"Select the Neurotechnology you think is best suited for treatment of {st.session_state['disease']} (you can select multiple)")
     
-    st.text("Consider the following guiding questions while making your choice(s):")
-    st.markdown("- Which neurotechnology(ies) have potential applications towards the treatment of the assigned disease?")
-    st.markdown("""- Among the neurotechnologies that have potential applications, which one(s) do you think is/are the 
-                most beneficial for the treatment of the assigned disease?""")
-    st.markdown("- Reflect upon the invasiveness/intrusiveness of the technologies? Does that influence your decision?")
-    st.markdown("""- Is safety more important or is the effectiveness of the technology more important? Hypothetically, if 
-                you find yourself or a loved one in a situation seeking technological intervention, would you choose a 
-                technology that has higher effectiveness but also higher risks over one which is safer but less effective?""")
-    st.markdown("- Additionally, are there technologies that you perceive " \
-    "as requiring more regular visits to a clinic as they may not be easily administrable at home? If yes, how do you think " \
-    "it affects the day-to-day routine of a patient and their caretakers? And does that influence your decision?")
-    st.markdown("-  Reflect upon the affordability of the technologies and the implications of the same towards an " \
-    "equitable access to treatment.")
-    st.markdown("- Does the regulatory status of the technology influence your decision? ")
-    
-    status = os.path.join(status_dir, "regulatory.pdf")
-    st.pdf(status, height=600)
+    with st.expander("Guiding questions"):
+        st.text("Consider the following guiding questions while making your choice(s):")
+        st.markdown("- Which neurotechnology(ies) have potential applications towards the treatment of the assigned disease?")
+        st.markdown("""- Among the neurotechnologies that have potential applications, which one(s) do you think is/are the 
+                    most beneficial for the treatment of the assigned disease?""")
+        st.markdown("- Reflect upon the invasiveness/intrusiveness of the technologies? Does that influence your decision?")
+        st.markdown("""- Is safety more important or is the effectiveness of the technology more important? Hypothetically, if 
+                    you find yourself or a loved one in a situation seeking technological intervention, would you choose a 
+                    technology that has higher effectiveness but also higher risks over one which is safer but less effective?""")
+        st.markdown("- Additionally, are there technologies that you perceive " \
+        "as requiring more regular visits to a clinic as they may not be easily administrable at home? If yes, how do you think " \
+        "it affects the day-to-day routine of a patient and their caretakers? And does that influence your decision?")
+        st.markdown("-  Reflect upon the affordability of the technologies and the implications of the same towards an " \
+        "equitable access to treatment.")
+        st.markdown("- Does the regulatory status of the technology influence your decision? ")
+        
+        status = os.path.join(status_dir, "regulatory.pdf")
+        st.pdf(status, height=600)
     
 
     st.multiselect('options',['Deep Brain Stimulation (DBS)',
