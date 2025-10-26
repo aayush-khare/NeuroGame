@@ -5,6 +5,7 @@ import os
 base_dir = os.path.dirname(__file__)
 pdf_dis_dir = os.path.join(base_dir, "dis_pdfs")
 pdf_tech_dir = os.path.join(base_dir, "tech_pdfs")
+status_dir = os.path.join(base_dir, "status")
 
 disease_options = ['Depression',
                    'Epilepsy',
@@ -73,10 +74,10 @@ if select_page == "Introduction":
     st.markdown("""
     ### Learning Objectives:""")
     
-    st.markdown("- Learn about brain diseases, their symptoms, demographics, and any neuroscientific basis behind the disease.")
-    st.markdown("- Learn about different neurotechnologies available for the treatment of a disease.")
+    st.markdown("- Learn about brain diseases, their symptoms, demographics, and any identified neuroscientific basis behind the diseases.")
+    st.markdown("- Learn about the various neurotechnologies available for the treatment of a disease.")
     st.markdown("- Assess various features of a neurotechnology towards making an informed decision on the best possible neurotechnological treatment for a disease.")
-    st.markdown("- Share your thoughts and considerations with others behind your choice of neurotechnology for treatment of a disease")
+    st.markdown("- Share your thoughts and considerations with others behind your choice of neurotechnology for treatment of a disease.")
     st.markdown('''
         <style>
         [data-testid="stMarkdownContainer"] ul{
@@ -87,13 +88,17 @@ if select_page == "Introduction":
 
     st.markdown(""" ### Gameplay Instructions: """)
     st.markdown("""
-                1. You will be randomly assigned a brain disease from a list of 6 diseases.
-                2. You can view information about the assigned disease including symptoms, demographics, and neuroscientific basis behind the disease.
-                3. You can then choose a neurotechnology that you think is best suited for treatment of the assigned disease from a list of 8 neurotechnologies.
-                4. You can view details about each neurotechnology including features, advantages, and disadvantages.
-                5. You can select one or more neurotechnologies that you think is best suited for treatment of the assigned disease.
-                6. You can then share your thoughts and considerations behind your choice of neurotechnology for treatment of the assigned disease.
-                7. Finally, you can proceed to a survey to share your perspectives on neurotechnologies in a clinical context.
+                1. You will be working in small groups of 3-4. Each group is randomly assigned a brain disease from a list of 6 diseases.
+                2. You can view information about the assigned disease such as symptoms, demographics, and any identified neuroscientific basis behind the disease.
+                3. You can then view details about various neurotechnologies from a list of 8 neurotechnologies and choose a neurotechnology that you think is best suited for treatment of the assigned disease.
+                4. As you view the neurotechnologies, identify which ones have potential applications towards the treatment of the disease assigned to your group.
+                5. Once you have filtered out the neurotechnologies that you think are relevant for treatment of the assigned disease, 
+                   you can weigh in the various aspects of these neurotechnologies to select one or more neurotechnologies that you think is/are 
+                   the best suited.
+                6. There are a bunch of guiding questions that you can consider towards making your decision. As you do so, note down
+                   your thoughts and considerations, for discussions later.
+                7. At the end of this game, you can also share your feedback and reflections about the game or about the use of neurotechnologies 
+                   in a clinical context through a survey.
                 """)
 
 elif select_page == "Brain Disease information":
@@ -140,7 +145,7 @@ elif select_page == "Choose Neurotechnology":
     col_left, col_right = st.columns([1, 3])
 
     with col_left:
-        view_technology = st.radio("View Neurotechnology details by selecting from the dropdown",
+        view_technology = st.radio("View the details of a Neurotechnology by selecting from the list below:",
                                 ['Deep Brain Stimulation (DBS)',
                                     'Focused Ultrasound (FUS)',
                                     'Spinal Cord Stimulation (SCS)',
@@ -181,6 +186,25 @@ elif select_page == "Choose Neurotechnology":
     
     st.header(f"Select the Neurotechnology you think is best suited for treatment of {st.session_state['disease']} (you can select multiple)")
     
+    st.text("Consider the following guiding questions while making your choice(s):")
+    st.markdown("- Which neurotechnology(ies) have potential applications towards the treatment of the assigned disease?")
+    st.markdown("""- Among the neurotechnologies that have potential applications, which one(s) do you think is/are the 
+                most beneficial for the treatment of the assigned disease?""")
+    st.markdown("- Reflect upon the invasiveness/intrusiveness of the technologies? Does that influence your decision?")
+    st.markdown("""- Is safety more important or is the effectiveness of the technology more important? Hypothetically, if 
+                you find yourself or a loved one in a situation seeking technological intervention, would you choose a 
+                technology that has higher effectiveness but also higher risks over one which is safer but less effective?""")
+    st.markdown("- Additionally, are there technologies that you perceive " \
+    "as requiring more regular visits to a clinic as they may not be easily administrable at home? If yes, how do you think " \
+    "it affects the day-to-day routine of a patient and their caretakers? And does that influence your decision?")
+    st.markdown("-  Reflect upon the affordability of the technologies and the implications of the same towards an " \
+    "equitable access to treatment.")
+    st.markdown("- Does the regulatory status of the technology influence your decision? ")
+    
+    status = os.path.join(status_dir, "regulatory.pdf")
+    st.pdf(status, height=600)
+    
+
     st.multiselect('options',['Deep Brain Stimulation (DBS)',
                     'Focused Ultrasound (FUS)',
                     'Spinal Cord Stimulation (SCS)',
@@ -196,7 +220,9 @@ elif select_page == "Choose Neurotechnology":
     
     if len(st.session_state['selected_tech_list']) >= 1:
 
-        st.markdown("### Please note any considerations/thoughts behind your choice(s) for sharing with the other participants")
+        st.markdown("### Please note any considerations/thoughts behind your choice(s) for sharing with the other participants. You can refer " \
+        "to the guiding questions above while noting down your thoughts.")
+        
         user_thoughts = st.text_area("",
                                      height=200,
                                      value=st.session_state.player_considerations,
@@ -206,5 +232,12 @@ elif select_page == "Choose Neurotechnology":
 else:
     # link to survey app
     st.markdown("## Proceed to the Survey to share your feedback about the game and any reflections on what you learnt")
-    st.markdown("Click the link below to proceed to the survey:")
+    st.markdown("Thank you for participating in this activity! We hope it helped you appreciate the complex " \
+    "considerations behind brain health and care, and helped reflect upon the various aspects of technological interventions " \
+    "that influence a person's (and/or their caretakers) choice in making a well-informed decision.")
+    st.markdown("We would love to hear " \
+    "from you what you thought about this activity, any feedback you have or any personal reflections that you would like " \
+    "to share about the use of neurotechnologies in a clinical context. ") 
+    
+    st.markdown("Please click the link below to proceed to a survey where you can share the same with us:")
     st.markdown("[Survey Link](https://forms.office.com/r/cjZ3H3k9Xf)")
