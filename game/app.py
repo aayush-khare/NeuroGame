@@ -115,16 +115,16 @@ elif select_page == "Brain Disease information":
     max_index = len(pdf_files) - 1
     min_index = 0
 
-    col1, col2 = st.columns([1.6, 1])
+    col1, col2 = st.columns([1, 1])
     with col1:
         if st.session_state['disease_index'] > min_index:
-            if st.button("Front"):
+            if st.button("Flip to frontside"):
                 st.session_state['disease_index'] -= 1
                 st.rerun()
 
     with col2:
         if st.session_state['disease_index'] < max_index:
-            if st.button("Back"):
+            if st.button("Flip to backside"):
                 st.session_state['disease_index'] += 1
                 st.rerun()
         
@@ -167,16 +167,16 @@ elif select_page == "Choose Neurotechnology":
             max_index = len(pdf_files) - 1
             min_index = 0
 
-            col1, col2 = st.columns([6, 1])
+            col1, col2 = st.columns([1, 1])
             with col1:
                 if st.session_state.tech_index > min_index:
-                    if st.button("Front"):
+                    if st.button("Flip to frontside"):
                         st.session_state['tech_index'] -= 1
                         st.rerun()
 
             with col2:
                 if st.session_state.tech_index < max_index:
-                    if st.button("Back"):
+                    if st.button("Flip to backside"):
                         st.session_state['tech_index'] += 1
                         st.rerun()
                 
