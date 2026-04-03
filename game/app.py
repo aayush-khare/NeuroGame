@@ -63,7 +63,7 @@ def update_player_considerations():
 
 select_page = st.sidebar.radio("Contents",
                                ["Introduction",
-                                "Brain Disease information", 
+                                "Brain disorder/condition information", 
                                 "Choose Neurotechnology", 
                                 "Survey"])
 
@@ -74,10 +74,10 @@ if select_page == "Introduction":
     st.markdown("""
     ### Learning Objectives:""")
     
-    st.markdown("- Learn about brain diseases, their symptoms, demographics, and any identified neuroscientific basis behind the diseases.")
-    st.markdown("- Learn about the various neurotechnologies available for the treatment of a disease.")
-    st.markdown("- Assess various features of a neurotechnology towards making an informed decision on the best possible neurotechnological treatment for a disease.")
-    st.markdown("- Share your thoughts and considerations with others behind your choice of neurotechnology for treatment of a disease.")
+    st.markdown("- Learn about brain disorders/conditions, their symptoms, demographics, and any identified neuroscientific basis behind the disorders/conditions.")
+    st.markdown("- Learn about the various neurotechnologies available for the treatment of a disorder/condition.")
+    st.markdown("- Assess various features of a neurotechnology towards making an informed decision on the best possible neurotechnological treatment for a disorder/condition.")
+    st.markdown("- Share your thoughts and considerations with others behind your choice of neurotechnology for treatment of a disorder/condition.")
     st.markdown('''
         <style>
         [data-testid="stMarkdownContainer"] ul{
@@ -88,11 +88,11 @@ if select_page == "Introduction":
 
     st.markdown(""" ### Gameplay Instructions: """)
     st.markdown("""
-                1. You will be working in small groups of 3-4. Each group is randomly assigned a brain disease from a list of 6 diseases.
-                2. You can view information about the assigned disease such as symptoms, demographics, and any identified neuroscientific basis behind the disease.
-                3. You can then view details about various neurotechnologies from a list of 8 neurotechnologies and choose a neurotechnology that you think is best suited for treatment of the assigned disease.
-                4. As you view the neurotechnologies, identify which ones have potential applications towards the treatment of the disease assigned to your group.
-                5. Once you have filtered out the neurotechnologies that you think are relevant for treatment of the assigned disease, 
+                1. You will be working in small groups of 3-4. Each group is randomly assigned a brain disorder/condition from a list of 6 disorders/conditions.
+                2. You can view information about the assigned disorder/condition such as symptoms, demographics, and any identified neuroscientific basis behind the disorder/condition.
+                3. You can then view details about various neurotechnologies from a list of 8 neurotechnologies and choose a neurotechnology that you think is best suited for treatment of the assigned disorder/condition.
+                4. As you view the neurotechnologies, identify which ones have potential applications towards the treatment of the disorder/condition assigned to your group.
+                5. Once you have filtered out the neurotechnologies that you think are relevant for treatment of the assigned disorder/condition, 
                    you can weigh in the various aspects of these neurotechnologies to select one or more neurotechnologies that you think is/are 
                    the best suited.
                 6. There are a bunch of guiding questions that you can consider towards making your decision. As you do so, note down
@@ -101,11 +101,11 @@ if select_page == "Introduction":
                    in a clinical context through a survey.
                 """)
 
-elif select_page == "Brain Disease information":
+elif select_page == "Brain disorder/condition information":
 
     disease_assigned = st.session_state['disease']
 
-    st.title(f"You have been assigned the disease: **{disease_assigned}**")
+    st.title(f"You have been assigned the disorder/condition: **{disease_assigned}**")
 
     pdf_files = [
         os.path.join(pdf_dis_dir, f"{disease_dict[disease_assigned]}_1.pdf"),
@@ -132,7 +132,7 @@ elif select_page == "Brain Disease information":
     current_disease_index = st.session_state.disease_index
     st.pdf(pdf_files[current_disease_index], height=600)
     
-    if st.button("Choose another disease"):
+    if st.button("Choose another disorder/condition"):
         st.session_state['disease'] = random.choice(disease_options)
         st.session_state['disease_index'] = 0
         current_disease_index = st.session_state.disease_index
@@ -188,9 +188,9 @@ elif select_page == "Choose Neurotechnology":
     
     with st.expander("Guiding questions"):
         st.text("Consider the following guiding questions while making your choice(s):")
-        st.markdown("- Which neurotechnology(ies) have potential applications towards the treatment of the assigned disease?")
+        st.markdown("- Which neurotechnology(ies) have potential applications towards the treatment of the assigned disorder/condition?")
         st.markdown("""- Among the neurotechnologies that have potential applications, which one(s) do you think is/are the 
-                    most beneficial for the treatment of the assigned disease?""")
+                    most beneficial for the treatment of the assigned disorder/condition?""")
         st.markdown("- Reflect upon the invasiveness/intrusiveness of the technologies? Does that influence your decision?")
         st.markdown("""- Is safety more important or is the effectiveness of the technology more important? Hypothetically, if 
                     you find yourself or a loved one in a situation seeking technological intervention, would you choose a 
