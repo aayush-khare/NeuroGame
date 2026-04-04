@@ -12,7 +12,7 @@ disease_options = ['Depression',
                    'Obsessive-Compulsive Disorder (OCD)',
                    'Parkinson\'s Disease',
                    'Tremor',
-                   'Chronic Pain']
+                   ]
 
 disease_dict = {
     'Depression': 'Depression',
@@ -20,18 +20,14 @@ disease_dict = {
     'Obsessive-Compulsive Disorder (OCD)': 'OCD',
     'Parkinson\'s Disease': 'PD',
     'Tremor': 'Tremor',
-    'Chronic Pain': 'Pain'
 }
 
 technology_dict = {
     'Deep Brain Stimulation (DBS)': 'DBS',
     'Focused Ultrasound (FUS)': 'FUS',
-    'Spinal Cord Stimulation (SCS)': 'SCS',
     'Transcranial Magnetic Stimulation (TMS)': 'TMS',
     'Vagus Nerve Stimulation (VNS)': 'VNS',
-    'Magnetic Seizure Therapy (MST)': 'MST',
     'Transcranial Direct Current Stimulation (tDCS)': 'TDCS',
-    'Transcutaneous Electrical Nerve Stimulation (TENS)': 'TENS'
 }
 
 if 'disease' not in st.session_state:
@@ -148,12 +144,10 @@ elif select_page == "Choose Neurotechnology":
         view_technology = st.radio("View the details of a Neurotechnology by selecting from the list below:",
                                 ['Deep Brain Stimulation (DBS)',
                                     'Focused Ultrasound (FUS)',
-                                    'Spinal Cord Stimulation (SCS)',
                                     'Transcranial Magnetic Stimulation (TMS)',
                                     'Vagus Nerve Stimulation (VNS)',
-                                    'Magnetic Seizure Therapy (MST)',
                                     'Transcranial Direct Current Stimulation (tDCS)',
-                                    'Transcutaneous Electrical Nerve Stimulation (TENS)'],
+                                    ],
                                     on_change=handle_tech_change)
 
     with col_right:
